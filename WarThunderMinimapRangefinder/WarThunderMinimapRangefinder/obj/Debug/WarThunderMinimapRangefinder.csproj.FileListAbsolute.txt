@@ -1,0 +1,11 @@
+C:\Users\Roman\Desktop\WarThunderMinimapRangefinder\WarThunderMinimapRangefinder\bin\Debug\WarThunderMinimapRangefinder.exe.config
+C:\Users\Roman\Desktop\WarThunderMinimapRangefinder\WarThunderMinimapRangefinder\bin\Debug\WarThunderMinimapRangefinder.exe
+C:\Users\Roman\Desktop\WarThunderMinimapRangefinder\WarThunderMinimapRangefinder\bin\Debug\WarThunderMinimapRangefinder.pdb
+C:\Users\Roman\Desktop\WarThunderMinimapRangefinder\WarThunderMinimapRangefinder\obj\Debug\WarThunderMinimapRangefinder.csproj.AssemblyReference.cache
+C:\Users\Roman\Desktop\WarThunderMinimapRangefinder\WarThunderMinimapRangefinder\obj\Debug\WarThunderMinimapRangefinder.Properties.Resources.resources
+C:\Users\Roman\Desktop\WarThunderMinimapRangefinder\WarThunderMinimapRangefinder\obj\Debug\WarThunderMinimapRangefinder.csproj.GenerateResource.cache
+C:\Users\Roman\Desktop\WarThunderMinimapRangefinder\WarThunderMinimapRangefinder\obj\Debug\WarThunderMinimapRangefinder.csproj.CoreCompileInputs.cache
+C:\Users\Roman\Desktop\WarThunderMinimapRangefinder\WarThunderMinimapRangefinder\obj\Debug\WarThunderMinimapRangefinder.exe
+C:\Users\Roman\Desktop\WarThunderMinimapRangefinder\WarThunderMinimapRangefinder\obj\Debug\WarThunderMinimapRangefinder.pdb
+C:\Users\Roman\Desktop\WarThunderMinimapRangefinder\WarThunderMinimapRangefinder\obj\Debug\WarThunderMinimapRangefinder.fOverlay.resources
+C:\Users\Roman\Desktop\WarThunderMinimapRangefinder\WarThunderMinimapRangefinder\obj\Debug\WarThunderMinimapRangefinder.fMain.resources
