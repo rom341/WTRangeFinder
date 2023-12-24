@@ -29,16 +29,17 @@
         private void InitializeComponent()
         {
             this.btnGetCords = new System.Windows.Forms.Button();
-            this.lPlayerCords = new System.Windows.Forms.Label();
-            this.lMarkCords = new System.Windows.Forms.Label();
+            this.lWhitePixelCords = new System.Windows.Forms.Label();
+            this.lYellowPixelLCords = new System.Windows.Forms.Label();
             this.btnPasteMinimapImage = new System.Windows.Forms.Button();
             this.tbRangeCoeficient = new System.Windows.Forms.TextBox();
-            this.btnGetRange = new System.Windows.Forms.Button();
+            this.btnGetRangeCoeficient = new System.Windows.Forms.Button();
+            this.lResultDistance = new System.Windows.Forms.Label();
             this.btnOverlay = new System.Windows.Forms.Button();
-            this.pbMinimap = new System.Windows.Forms.PictureBox();
+            this.pbMinimapImage = new System.Windows.Forms.PictureBox();
             this.btnPasteFullscreenImage = new System.Windows.Forms.Button();
             this.chbAutoDetection = new System.Windows.Forms.CheckBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pbMinimap)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbMinimapImage)).BeginInit();
             this.SuspendLayout();
             // 
             // btnGetCords
@@ -51,23 +52,23 @@
             this.btnGetCords.UseVisualStyleBackColor = true;
             this.btnGetCords.Click += new System.EventHandler(this.btnTest_Click);
             // 
-            // lPlayerCords
+            // lWhitePixelCords
             // 
-            this.lPlayerCords.AutoSize = true;
-            this.lPlayerCords.Location = new System.Drawing.Point(612, 9);
-            this.lPlayerCords.Name = "lPlayerCords";
-            this.lPlayerCords.Size = new System.Drawing.Size(82, 16);
-            this.lPlayerCords.TabIndex = 2;
-            this.lPlayerCords.Text = "PlayerCords";
+            this.lWhitePixelCords.AutoSize = true;
+            this.lWhitePixelCords.Location = new System.Drawing.Point(612, 9);
+            this.lWhitePixelCords.Name = "lWhitePixelCords";
+            this.lWhitePixelCords.Size = new System.Drawing.Size(109, 16);
+            this.lWhitePixelCords.TabIndex = 2;
+            this.lWhitePixelCords.Text = "lWhitePixelCords";
             // 
-            // lMarkCords
+            // lYellowPixelLCords
             // 
-            this.lMarkCords.AutoSize = true;
-            this.lMarkCords.Location = new System.Drawing.Point(612, 40);
-            this.lMarkCords.Name = "lMarkCords";
-            this.lMarkCords.Size = new System.Drawing.Size(73, 16);
-            this.lMarkCords.TabIndex = 2;
-            this.lMarkCords.Text = "MarkCords";
+            this.lYellowPixelLCords.AutoSize = true;
+            this.lYellowPixelLCords.Location = new System.Drawing.Point(612, 40);
+            this.lYellowPixelLCords.Name = "lYellowPixelLCords";
+            this.lYellowPixelLCords.Size = new System.Drawing.Size(122, 16);
+            this.lYellowPixelLCords.TabIndex = 2;
+            this.lYellowPixelLCords.Text = "lYellowPixelLCords";
             // 
             // btnPasteMinimapImage
             // 
@@ -87,15 +88,23 @@
             this.tbRangeCoeficient.TabIndex = 4;
             this.tbRangeCoeficient.Text = "250";
             // 
-            // btnGetRange
+            // btnGetRangeCoeficient
             // 
-            this.btnGetRange.Location = new System.Drawing.Point(614, 125);
-            this.btnGetRange.Name = "btnGetRange";
-            this.btnGetRange.Size = new System.Drawing.Size(171, 23);
-            this.btnGetRange.TabIndex = 5;
-            this.btnGetRange.Text = "GetRange";
-            this.btnGetRange.UseVisualStyleBackColor = true;
-            this.btnGetRange.Click += new System.EventHandler(this.btnGetRangeCoeficient_Click);
+            this.btnGetRangeCoeficient.Location = new System.Drawing.Point(614, 125);
+            this.btnGetRangeCoeficient.Name = "btnGetRangeCoeficient";
+            this.btnGetRangeCoeficient.Size = new System.Drawing.Size(171, 23);
+            this.btnGetRangeCoeficient.TabIndex = 5;
+            this.btnGetRangeCoeficient.Text = "GetRange";
+            this.btnGetRangeCoeficient.UseVisualStyleBackColor = true;
+            this.btnGetRangeCoeficient.Click += new System.EventHandler(this.btnGetRangeCoeficient_Click);
+            // 
+            // lResultDistance
+            // 
+            this.lResultDistance.AutoSize = true;
+            this.lResultDistance.Location = new System.Drawing.Point(612, 163);
+            this.lResultDistance.Name = "lResultDistance";
+            this.lResultDistance.Size = new System.Drawing.Size(0, 16);
+            this.lResultDistance.TabIndex = 6;
             // 
             // btnOverlay
             // 
@@ -107,16 +116,16 @@
             this.btnOverlay.UseVisualStyleBackColor = true;
             this.btnOverlay.Click += new System.EventHandler(this.btnOverlayShow_Click);
             // 
-            // pbMinimap
+            // pbMinimapImage
             // 
-            this.pbMinimap.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pbMinimap.Image = global::WarThunderMinimapRangefinder.Properties.Resources.WTMinimapExample2_180m;
-            this.pbMinimap.Location = new System.Drawing.Point(0, 0);
-            this.pbMinimap.Name = "pbMinimap";
-            this.pbMinimap.Size = new System.Drawing.Size(490, 450);
-            this.pbMinimap.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbMinimap.TabIndex = 0;
-            this.pbMinimap.TabStop = false;
+            this.pbMinimapImage.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pbMinimapImage.Image = global::WarThunderMinimapRangefinder.Properties.Resources.WTMinimapExample2_180m;
+            this.pbMinimapImage.Location = new System.Drawing.Point(0, 0);
+            this.pbMinimapImage.Name = "pbMinimapImage";
+            this.pbMinimapImage.Size = new System.Drawing.Size(490, 450);
+            this.pbMinimapImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbMinimapImage.TabIndex = 0;
+            this.pbMinimapImage.TabStop = false;
             // 
             // btnPasteFullscreenImage
             // 
@@ -147,17 +156,18 @@
             this.Controls.Add(this.chbAutoDetection);
             this.Controls.Add(this.btnPasteFullscreenImage);
             this.Controls.Add(this.btnOverlay);
-            this.Controls.Add(this.btnGetRange);
+            this.Controls.Add(this.lResultDistance);
+            this.Controls.Add(this.btnGetRangeCoeficient);
             this.Controls.Add(this.tbRangeCoeficient);
             this.Controls.Add(this.btnPasteMinimapImage);
-            this.Controls.Add(this.lMarkCords);
-            this.Controls.Add(this.lPlayerCords);
+            this.Controls.Add(this.lYellowPixelLCords);
+            this.Controls.Add(this.lWhitePixelCords);
             this.Controls.Add(this.btnGetCords);
-            this.Controls.Add(this.pbMinimap);
+            this.Controls.Add(this.pbMinimapImage);
             this.Name = "fMain";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.fMain_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pbMinimap)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbMinimapImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -165,13 +175,14 @@
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pbMinimap;
+        private System.Windows.Forms.PictureBox pbMinimapImage;
         private System.Windows.Forms.Button btnGetCords;
-        private System.Windows.Forms.Label lPlayerCords;
-        private System.Windows.Forms.Label lMarkCords;
+        private System.Windows.Forms.Label lWhitePixelCords;
+        private System.Windows.Forms.Label lYellowPixelLCords;
         private System.Windows.Forms.Button btnPasteMinimapImage;
         private System.Windows.Forms.TextBox tbRangeCoeficient;
-        private System.Windows.Forms.Button btnGetRange;
+        private System.Windows.Forms.Button btnGetRangeCoeficient;
+        private System.Windows.Forms.Label lResultDistance;
         private System.Windows.Forms.Button btnOverlay;
         private System.Windows.Forms.Button btnPasteFullscreenImage;
         private System.Windows.Forms.CheckBox chbAutoDetection;
