@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.lDistance = new System.Windows.Forms.Label();
-            this.pbMinimapVector = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pbMinimapVector)).BeginInit();
+            this.pbMinimap = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pbMinimap)).BeginInit();
             this.SuspendLayout();
             // 
             // lDistance
@@ -40,20 +40,19 @@
             this.lDistance.ForeColor = System.Drawing.Color.Red;
             this.lDistance.Location = new System.Drawing.Point(0, 0);
             this.lDistance.Name = "lDistance";
-            this.lDistance.Size = new System.Drawing.Size(133, 32);
+            this.lDistance.Size = new System.Drawing.Size(142, 32);
             this.lDistance.TabIndex = 0;
-            this.lDistance.Text = "Distance";
+            this.lDistance.Text = "Distance:";
             this.lDistance.Click += new System.EventHandler(this.lDistance_Click);
             // 
-            // pbMinimapVector
+            // pbMinimap
             // 
-            this.pbMinimapVector.Location = new System.Drawing.Point(0, 35);
-            this.pbMinimapVector.Name = "pbMinimapVector";
-            this.pbMinimapVector.Size = new System.Drawing.Size(345, 345);
-            this.pbMinimapVector.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbMinimapVector.TabIndex = 1;
-            this.pbMinimapVector.TabStop = false;
-            this.pbMinimapVector.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pbMinimapVector_MouseClick);
+            this.pbMinimap.Location = new System.Drawing.Point(0, 35);
+            this.pbMinimap.Name = "pbMinimap";
+            this.pbMinimap.Size = new System.Drawing.Size(345, 345);
+            this.pbMinimap.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbMinimap.TabIndex = 1;
+            this.pbMinimap.TabStop = false;
             // 
             // fOverlay
             // 
@@ -61,7 +60,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(425, 444);
-            this.Controls.Add(this.pbMinimapVector);
+            this.Controls.Add(this.pbMinimap);
             this.Controls.Add(this.lDistance);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "fOverlay";
@@ -69,7 +68,7 @@
             this.Text = "fOverlay";
             this.TopMost = true;
             this.TransparencyKey = System.Drawing.Color.Black;
-            ((System.ComponentModel.ISupportInitialize)(this.pbMinimapVector)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbMinimap)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -78,6 +77,6 @@
         #endregion
 
         private System.Windows.Forms.Label lDistance;
-        private System.Windows.Forms.PictureBox pbMinimapVector;
+        private System.Windows.Forms.PictureBox pbMinimap;
     }
 }
