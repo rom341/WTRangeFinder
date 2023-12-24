@@ -16,7 +16,7 @@ namespace WarThunderMinimapRangefinder
         static public int screenWidth { get; set; } = 1920;
         static public int screenHeight { get; set; } = 1080;
         public Point lastFoundPoint { get; set; }
-        static public Image getImageFromClipboard()
+        static public Image getMinimapFromClipboard()
         {
             Image returnImage = null;
             if (Clipboard.ContainsImage())
@@ -52,11 +52,6 @@ namespace WarThunderMinimapRangefinder
         }
         static public Bitmap DrawVector(Point player, Point mark, Image imageSource)
         {
-            if (imageSource != null)
-            {
-                imageSource.Dispose();
-            }
-
             // Создаем копию текущего изображения в pictureBox
             Bitmap screenBitmap = new Bitmap(320, 320);
 
