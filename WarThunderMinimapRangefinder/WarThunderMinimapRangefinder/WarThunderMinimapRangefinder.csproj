@@ -48,7 +48,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BitmapWorker.cs" />
     <Compile Include="fMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -61,7 +60,6 @@
     <Compile Include="fOverlay.Designer.cs">
       <DependentUpon>fOverlay.cs</DependentUpon>
     </Compile>
-    <Compile Include="PointWorker.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="fMain.resx">
