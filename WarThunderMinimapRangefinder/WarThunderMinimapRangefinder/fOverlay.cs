@@ -15,16 +15,18 @@ namespace WarThunderMinimapRangefinder
     public partial class fOverlay : Form
     {
         fMain fmain;
-        private bool isDragging = false;
-        private Point lastMousePosition;
+        Point lmbPoint, rmbPoint;
 
         public fOverlay(fMain fmain)
         {
             InitializeComponent();
             ChangeFormSize();
             this.fmain = fmain;
+
+            lmbPoint = new Point(-1, -1);
+            rmbPoint = new Point(-1, -1);
         }
-        public void ChangeDistance(string distance)
+        public void ChangelDistanceText(string distance)
         {
             lDistance.Text = distance;
             ChangeFormSize();
@@ -32,48 +34,50 @@ namespace WarThunderMinimapRangefinder
 
         private void ChangeFormSize()
         {
-            this.Width = Math.Max(lDistance.Width, pbMinimap.Width);
-            this.Height = lDistance.Height + pbMinimap.Height + 5;
+            this.Width = Math.Max(lDistance.Width, pbMinimapVector.Width);
+            this.Height = lDistance.Height + pbMinimapVector.Height + 5;
         }
 
         public void DrawVector(Point player, Point mark)
         {
-            if (pbMinimap.Image != null)
-            {
-                pbMinimap.Image.Dispose();
-            }
-            // Создаем изображение, если его нет
-            pbMinimap.Image = new Bitmap(320, 320);
-            
-
-            // Создаем копию текущего изображения в pbMinimap
-            Bitmap screenBitmap = new Bitmap(pbMinimap.Image);
-
-            using (Graphics g = Graphics.FromImage(screenBitmap))
-            {
-                // Устанавливаем цвет и стиль линии
-                using (Pen pen = new Pen(Color.Red))
-                {
-                    pen.Width = 5;
-                    pen.DashStyle = DashStyle.Dash;
-
-                    // Рисуем линию между двумя точками
-                    g.DrawLine(pen, player, mark);
-                }
-            }
-
-            // Присваиваем измененное изображение обратно в pbMinimap
-            pbMinimap.Image = screenBitmap;
+            if (pbMinimapVector.Image != null) pbMinimapVector.Image.Dispose();
+            pbMinimapVector.Image = BitmapWorker.DrawVector(player, mark, pbMinimapVector.Image);
 
             System.Timers.Timer timer = new System.Timers.Timer(2000);//2 секунды
             timer.AutoReset = false;
-            timer.Elapsed += (sender, e) => { pbMinimap.Image = null; };
+            timer.Elapsed += (sender, e) => Invoke(new Action(() => { pbMinimapVector.Image = null; timer.Dispose(); }));
             timer.Start();
         }
 
         private void lDistance_Click(object sender, EventArgs e)
         {
-            fmain.FindRange();
+            lDistance.Text = "Select 2 points. 5 Sec";
+            if (pbMinimapVector.Image != null) pbMinimapVector.Dispose();
+            pbMinimapVector.Image = BitmapWorker.getMinimap(BitmapWorker.getScreenshot());
+            
+            System.Timers.Timer timer = new System.Timers.Timer(5000);//5 секунды
+            timer.AutoReset = false;
+            timer.Elapsed += (S, E) => Invoke(new Action(() => { pbMinimapVector.Image = null;lDistance.Text = "Distance"; timer.Dispose(); }));
+            timer.Start();
+        }
+
+        private void pbMinimapVector_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                lmbPoint = new Point(e.X, e.Y);
+            }
+            else if (e.Button == MouseButtons.Right)
+            {
+                rmbPoint = new Point(e.X, e.Y);
+            }
+            if(PointWorker.IsPointValid(lmbPoint) && PointWorker.IsPointValid(rmbPoint))
+            {
+                fmain.setPointsAndMinimap(lmbPoint, rmbPoint, new Bitmap(pbMinimapVector.Image));
+                fmain.FindRangeFromSavedPoints();
+                lmbPoint = new Point(-1, -1);
+                rmbPoint = new Point(-1, -1);
+            }
         }
     }
 }
