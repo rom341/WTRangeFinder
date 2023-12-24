@@ -15,7 +15,7 @@ namespace WarThunderMinimapRangefinder
 {
     public partial class fMain : Form
     {
-        System.Timers.Timer autoMarkDetectionTimer = new System.Timers.Timer(5000);//5 sec
+        System.Timers.Timer autoMarkDetectionTimer;
         fOverlay overlayForm;
         BitmapWorker bitmapWorker = new BitmapWorker();
         Point markPoint { get; set; }
@@ -45,20 +45,20 @@ namespace WarThunderMinimapRangefinder
             Color markColor = Color.FromArgb(215, 215, 5);
             bitmapWorker.FindPixelCoordinates(screenBitmap, markColor);
             markPoint = bitmapWorker.lastFoundPoint;
-            lYellowPixelLCords.Text = $"Mark Pixel: ({markPoint.X}, {markPoint.Y})";
+            lMarkCords.Text = $"Mark Pixel: ({markPoint.X}, {markPoint.Y})";
 
             // Находим координаты игрока
             Color playerColor = Color.FromArgb(250, 250, 250);
             bitmapWorker.FindPixelCoordinates(screenBitmap, playerColor);
             playerPoint = bitmapWorker.lastFoundPoint;
-            lWhitePixelCords.Text = $"Player Pixel: ({playerPoint.X}, {playerPoint.Y})";
+            lPlayerCords.Text = $"Player Pixel: ({playerPoint.X}, {playerPoint.Y})";
 
             screenBitmap.Dispose();
         }
 
         private void btnPasteImage_Click(object sender, EventArgs e)
         {
-            Image imageFromClipboard = BitmapWorker.getImageFromClipboard();
+            Image imageFromClipboard = BitmapWorker.getMinimapFromClipboard();
             // Проверяем, есть ли изображение в буфере обмена
             if (imageFromClipboard!=null)
             {
@@ -86,7 +86,7 @@ namespace WarThunderMinimapRangefinder
             }
             else
             {
-                overlayForm.ChangelDistanceText("");
+                overlayForm.ChangelDistanceText("Distance");
             }
         }
 
@@ -143,11 +143,27 @@ namespace WarThunderMinimapRangefinder
             else autoMarkDetectionTimer.Stop();
         }
 
+        public void setPointsAndMinimap(Point playerPoint, Point markPoint, Bitmap minimap)
+        {
+            this.playerPoint = playerPoint;
+            this.markPoint = markPoint;
+            if (pbMinimap.Image != null) pbMinimap.Image.Dispose();
+            pbMinimap.Image=minimap;
+        }
         public void FindRangeFromScreenshot()
         {
             btnPasteFullscreenImage.PerformClick();
             btnGetCords.PerformClick();
-            btnGetRangeCoeficient.PerformClick();
+            btnGetRange.PerformClick();
+        }
+        public void FindRangeFromSavedMinimap()
+        {
+            btnGetCords.PerformClick();
+            btnGetRange.PerformClick();
+        }
+        public void FindRangeFromSavedPoints()
+        {
+            btnGetRange.PerformClick();
         }
     }
 }

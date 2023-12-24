@@ -40,9 +40,9 @@
             this.lDistance.ForeColor = System.Drawing.Color.Red;
             this.lDistance.Location = new System.Drawing.Point(0, 0);
             this.lDistance.Name = "lDistance";
-            this.lDistance.Size = new System.Drawing.Size(142, 32);
+            this.lDistance.Size = new System.Drawing.Size(133, 32);
             this.lDistance.TabIndex = 0;
-            this.lDistance.Text = "Distance:";
+            this.lDistance.Text = "Distance";
             this.lDistance.Click += new System.EventHandler(this.lDistance_Click);
             // 
             // pbMinimapVector
@@ -53,6 +53,7 @@
             this.pbMinimapVector.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbMinimapVector.TabIndex = 1;
             this.pbMinimapVector.TabStop = false;
+            this.pbMinimapVector.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pbMinimapVector_MouseClick);
             // 
             // fOverlay
             // 
