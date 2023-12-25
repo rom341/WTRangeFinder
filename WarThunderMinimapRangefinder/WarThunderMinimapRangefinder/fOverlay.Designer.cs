@@ -47,9 +47,10 @@
             // 
             // pbMinimapVector
             // 
+            this.pbMinimapVector.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pbMinimapVector.Location = new System.Drawing.Point(0, 35);
             this.pbMinimapVector.Name = "pbMinimapVector";
-            this.pbMinimapVector.Size = new System.Drawing.Size(345, 345);
+            this.pbMinimapVector.Size = new System.Drawing.Size(350, 325);
             this.pbMinimapVector.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbMinimapVector.TabIndex = 1;
             this.pbMinimapVector.TabStop = false;
@@ -60,7 +61,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(425, 444);
+            this.ClientSize = new System.Drawing.Size(400, 400);
             this.Controls.Add(this.pbMinimapVector);
             this.Controls.Add(this.lDistance);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -77,7 +78,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Label lDistance;
-        private System.Windows.Forms.PictureBox pbMinimapVector;
+        public System.Windows.Forms.Label lDistance;
+        public System.Windows.Forms.PictureBox pbMinimapVector;
     }
 }

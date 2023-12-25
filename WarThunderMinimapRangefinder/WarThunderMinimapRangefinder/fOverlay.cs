@@ -20,7 +20,7 @@ namespace WarThunderMinimapRangefinder
         public fOverlay(fMain fmain)
         {
             InitializeComponent();
-            ChangeFormSize();
+            AdjustPositionsAndSizes();
             this.fmain = fmain;
 
             lmbPoint = new Point(-1, -1);
@@ -29,11 +29,13 @@ namespace WarThunderMinimapRangefinder
         public void ChangelDistanceText(string distance)
         {
             lDistance.Text = distance;
-            ChangeFormSize();
+            AdjustPositionsAndSizes();
         }
 
-        private void ChangeFormSize()
+        public void AdjustPositionsAndSizes()
         {
+            lDistance.Location = new Point(0, 0);
+            pbMinimapVector.Location = new Point(0, lDistance.Height + 5);
             this.Width = Math.Max(lDistance.Width, pbMinimapVector.Width);
             this.Height = lDistance.Height + pbMinimapVector.Height + 5;
         }

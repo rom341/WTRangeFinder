@@ -38,6 +38,7 @@
             this.pbMinimap = new System.Windows.Forms.PictureBox();
             this.btnPasteFullscreenImage = new System.Windows.Forms.Button();
             this.chbAutoDetection = new System.Windows.Forms.CheckBox();
+            this.btnOpenOverlayGuider = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbMinimap)).BeginInit();
             this.SuspendLayout();
             // 
@@ -99,9 +100,9 @@
             // 
             // btnOverlay
             // 
-            this.btnOverlay.Location = new System.Drawing.Point(617, 386);
+            this.btnOverlay.Location = new System.Drawing.Point(614, 386);
             this.btnOverlay.Name = "btnOverlay";
-            this.btnOverlay.Size = new System.Drawing.Size(171, 23);
+            this.btnOverlay.Size = new System.Drawing.Size(174, 23);
             this.btnOverlay.TabIndex = 7;
             this.btnOverlay.Text = "Overlay";
             this.btnOverlay.UseVisualStyleBackColor = true;
@@ -139,11 +140,22 @@
             this.chbAutoDetection.UseVisualStyleBackColor = true;
             this.chbAutoDetection.CheckedChanged += new System.EventHandler(this.chbAutoDetection_CheckedChanged);
             // 
+            // btnOpenOverlayGuider
+            // 
+            this.btnOpenOverlayGuider.Location = new System.Drawing.Point(614, 414);
+            this.btnOpenOverlayGuider.Name = "btnOpenOverlayGuider";
+            this.btnOpenOverlayGuider.Size = new System.Drawing.Size(174, 24);
+            this.btnOpenOverlayGuider.TabIndex = 10;
+            this.btnOpenOverlayGuider.Text = "Open overlay guider";
+            this.btnOpenOverlayGuider.UseVisualStyleBackColor = true;
+            this.btnOpenOverlayGuider.Click += new System.EventHandler(this.btnOpenOverlayGuider_Click);
+            // 
             // fMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnOpenOverlayGuider);
             this.Controls.Add(this.chbAutoDetection);
             this.Controls.Add(this.btnPasteFullscreenImage);
             this.Controls.Add(this.btnOverlay);
@@ -175,6 +187,7 @@
         private System.Windows.Forms.Button btnOverlay;
         private System.Windows.Forms.Button btnPasteFullscreenImage;
         private System.Windows.Forms.CheckBox chbAutoDetection;
+        private System.Windows.Forms.Button btnOpenOverlayGuider;
     }
 }
 

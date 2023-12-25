@@ -17,6 +17,7 @@ namespace WarThunderMinimapRangefinder
     {
         System.Timers.Timer autoMarkDetectionTimer;
         fOverlay overlayForm;
+        fOverlayGuider labelGuider;
         BitmapWorker bitmapWorker = new BitmapWorker();
         Point markPoint { get; set; }
         Point playerPoint { get; set; }
@@ -77,7 +78,7 @@ namespace WarThunderMinimapRangefinder
 
             if (PointWorker.IsPointValid(playerPoint) && PointWorker.IsPointValid(markPoint))
             {
-                updatePixelsInOneCellValue();
+                updateMetersInOnePixelValue();
 
                 double distanceInMeters = Math.Round(metersInOnePixel * PointWorker.GetDistance(playerPoint, markPoint), 2);
 
@@ -86,11 +87,11 @@ namespace WarThunderMinimapRangefinder
             }
             else
             {
-                overlayForm.ChangelDistanceText("Distance");
+                overlayForm.ChangelDistanceText("Distance: ?");
             }
         }
 
-        private void updatePixelsInOneCellValue()
+        private void updateMetersInOnePixelValue()
         {
             int pixelsInOneCell = BitmapWorker.FindBlackStripeLength(new Bitmap(pbMinimap.Image));
             metersInOnePixel = rangeCoeficient / (double)pixelsInOneCell;
@@ -117,8 +118,8 @@ namespace WarThunderMinimapRangefinder
         }
         private void SetOverlayLocation()
         {
-            int x = Screen.PrimaryScreen.Bounds.Right - overlayForm.Width - 16;
-            int y = Screen.PrimaryScreen.Bounds.Bottom - overlayForm.Height - 3;
+            int x = Screen.PrimaryScreen.Bounds.Right - overlayForm.Width - 15;
+            int y = Screen.PrimaryScreen.Bounds.Bottom - overlayForm.Height - 10;
             overlayForm.Location = new Point(x, y);
         }
 
@@ -164,6 +165,16 @@ namespace WarThunderMinimapRangefinder
         public void FindRangeFromSavedPoints()
         {
             btnGetRange.PerformClick();
+        }
+
+        private void btnOpenOverlayGuider_Click(object sender, EventArgs e)
+        {
+            if(labelGuider==null)
+            {
+                labelGuider = new fOverlayGuider(ref overlayForm);
+            }
+            if(labelGuider.Visible) labelGuider.Hide();
+            else labelGuider.Show();
         }
     }
 }
