@@ -46,6 +46,8 @@
             this.btnPBVectorWidthMinus = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnload = new System.Windows.Forms.Button();
+            this.lOverlayPosition = new System.Windows.Forms.Label();
+            this.lPBVectorSize = new System.Windows.Forms.Label();
             this.gbOverlayPosition.SuspendLayout();
             this.gbPBVectorSize.SuspendLayout();
             this.SuspendLayout();
@@ -103,20 +105,21 @@
             // gbOverlayPosition
             // 
             this.gbOverlayPosition.Controls.Add(this.btnMoveLabelFormUp);
+            this.gbOverlayPosition.Controls.Add(this.lOverlayPosition);
             this.gbOverlayPosition.Controls.Add(this.tbMoveStep);
             this.gbOverlayPosition.Controls.Add(this.btnMoveLabelFormRight);
             this.gbOverlayPosition.Controls.Add(this.btnMoveLabelFormDown);
             this.gbOverlayPosition.Controls.Add(this.btnMoveLabelFormLeft);
             this.gbOverlayPosition.Location = new System.Drawing.Point(12, 12);
             this.gbOverlayPosition.Name = "gbOverlayPosition";
-            this.gbOverlayPosition.Size = new System.Drawing.Size(275, 155);
+            this.gbOverlayPosition.Size = new System.Drawing.Size(275, 199);
             this.gbOverlayPosition.TabIndex = 5;
             this.gbOverlayPosition.TabStop = false;
             this.gbOverlayPosition.Text = "Overlay position";
             // 
             // btnOverlayLabelFont
             // 
-            this.btnOverlayLabelFont.Location = new System.Drawing.Point(185, 184);
+            this.btnOverlayLabelFont.Location = new System.Drawing.Point(185, 277);
             this.btnOverlayLabelFont.Name = "btnOverlayLabelFont";
             this.btnOverlayLabelFont.Size = new System.Drawing.Size(225, 23);
             this.btnOverlayLabelFont.TabIndex = 6;
@@ -126,6 +129,7 @@
             // 
             // gbPBVectorSize
             // 
+            this.gbPBVectorSize.Controls.Add(this.lPBVectorSize);
             this.gbPBVectorSize.Controls.Add(this.lPBVectorHeight);
             this.gbPBVectorSize.Controls.Add(this.btnPBVectorHeightPlus);
             this.gbPBVectorSize.Controls.Add(this.lPBVectorWidth);
@@ -135,7 +139,7 @@
             this.gbPBVectorSize.Controls.Add(this.btnPBVectorWidthMinus);
             this.gbPBVectorSize.Location = new System.Drawing.Point(293, 12);
             this.gbPBVectorSize.Name = "gbPBVectorSize";
-            this.gbPBVectorSize.Size = new System.Drawing.Size(264, 155);
+            this.gbPBVectorSize.Size = new System.Drawing.Size(264, 199);
             this.gbPBVectorSize.TabIndex = 7;
             this.gbPBVectorSize.TabStop = false;
             this.gbPBVectorSize.Text = "Vector picturebox size";
@@ -214,7 +218,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(185, 223);
+            this.btnSave.Location = new System.Drawing.Point(185, 316);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(97, 23);
             this.btnSave.TabIndex = 8;
@@ -224,7 +228,7 @@
             // 
             // btnload
             // 
-            this.btnload.Location = new System.Drawing.Point(320, 223);
+            this.btnload.Location = new System.Drawing.Point(320, 316);
             this.btnload.Name = "btnload";
             this.btnload.Size = new System.Drawing.Size(90, 23);
             this.btnload.TabIndex = 9;
@@ -232,11 +236,29 @@
             this.btnload.UseVisualStyleBackColor = true;
             this.btnload.Click += new System.EventHandler(this.btnload_Click);
             // 
+            // lOverlayPosition
+            // 
+            this.lOverlayPosition.AutoSize = true;
+            this.lOverlayPosition.Location = new System.Drawing.Point(6, 170);
+            this.lOverlayPosition.Name = "lOverlayPosition";
+            this.lOverlayPosition.Size = new System.Drawing.Size(0, 16);
+            this.lOverlayPosition.TabIndex = 10;
+            this.lOverlayPosition.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lPBVectorSize
+            // 
+            this.lPBVectorSize.AutoSize = true;
+            this.lPBVectorSize.Location = new System.Drawing.Point(6, 170);
+            this.lPBVectorSize.Name = "lPBVectorSize";
+            this.lPBVectorSize.Size = new System.Drawing.Size(0, 16);
+            this.lPBVectorSize.TabIndex = 11;
+            this.lPBVectorSize.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // fOverlaySettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(582, 277);
+            this.ClientSize = new System.Drawing.Size(582, 345);
             this.Controls.Add(this.btnload);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.gbPBVectorSize);
@@ -272,5 +294,7 @@
         private System.Windows.Forms.Button btnPBVectorHeightMinus;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnload;
+        private System.Windows.Forms.Label lOverlayPosition;
+        private System.Windows.Forms.Label lPBVectorSize;
     }
 }

@@ -32,21 +32,32 @@ namespace WarThunderMinimapRangefinder
 
         private void btnMoveLabelFormRight_Click(object sender, EventArgs e)
         {
-            overlay.Location = new Point(overlay.Location.X + overlayLocationStep, overlay.Location.Y);
+            MoveOverlay(overlayLocationStep, 0);
         }
+
         private void btnMoveLabelFormDown_Click(object sender, EventArgs e)
         {
-            overlay.Location = new Point(overlay.Location.X, overlay.Location.Y + overlayLocationStep);
+            MoveOverlay(0, overlayLocationStep);
         }
 
         private void btnMoveLabelFormLeft_Click(object sender, EventArgs e)
         {
-            overlay.Location = new Point(overlay.Location.X - overlayLocationStep, overlay.Location.Y);
+            MoveOverlay(-overlayLocationStep, 0);
         }
 
         private void btnMoveLabelFormUp_Click(object sender, EventArgs e)
         {
-            overlay.Location = new Point(overlay.Location.X, overlay.Location.Y - overlayLocationStep);
+            MoveOverlay(0, -overlayLocationStep);
+        }
+
+        private void MoveOverlay(int offsetX, int offsetY)
+        {
+
+            // Перемещаем overlay
+            overlay.Location = new Point(overlay.Location.X + offsetX, overlay.Location.Y + offsetY);
+
+            // Обновляем текстовую метку с новыми координатами
+            lOverlayPosition.Text = $"Overlay position: ({(int)(overlay.Location.X * 1.2)}, {(int)(overlay.Location.Y * 1.2)})";
         }
 
         private void btnOverlayLabelFont_Click(object sender, EventArgs e)
@@ -70,24 +81,28 @@ namespace WarThunderMinimapRangefinder
         private void btnPBVectorWidthMinus_Click(object sender, EventArgs e)
         {
             overlay.pbMinimapVector.Width -= pbVectorSizeStep;
+            lPBVectorSize.Text = $"Vector size: ({overlay.pbMinimapVector.Width}, {overlay.pbMinimapVector.Height})";
             overlay.AdjustPositionsAndSizes();
         }
 
         private void btnPBVectorWidthPlus_Click(object sender, EventArgs e)
         {
             overlay.pbMinimapVector.Width += pbVectorSizeStep;
+            lPBVectorSize.Text = $"Vector size: ({overlay.pbMinimapVector.Width}, {overlay.pbMinimapVector.Height})";
             overlay.AdjustPositionsAndSizes();
         }
 
         private void btnPBVectorHeightMinus_Click(object sender, EventArgs e)
         {
             overlay.pbMinimapVector.Height -= pbVectorSizeStep;
+            lPBVectorSize.Text = $"Vector size: ({overlay.pbMinimapVector.Width}, {overlay.pbMinimapVector.Height})";
             overlay.AdjustPositionsAndSizes();
         }
 
         private void btnPBVectorHeightPlus_Click(object sender, EventArgs e)
         {
             overlay.pbMinimapVector.Height += pbVectorSizeStep;
+            lPBVectorSize.Text = $"Vector size: ({overlay.pbMinimapVector.Width}, {overlay.pbMinimapVector.Height})";
             overlay.AdjustPositionsAndSizes();
         }
 
@@ -148,7 +163,7 @@ namespace WarThunderMinimapRangefinder
             }
             else
             {
-                MessageBox.Show("File to get overlay position is not found. Overlay will be located at the standert position. Use 'Overlay settings' to change overlay settings", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //MessageBox.Show("File to get overlay position is not found. Overlay will be located at the standert position. Use 'Overlay settings' to change overlay settings", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

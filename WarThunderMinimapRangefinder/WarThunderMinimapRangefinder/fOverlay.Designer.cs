@@ -43,10 +43,11 @@
             this.lDistance.Size = new System.Drawing.Size(133, 32);
             this.lDistance.TabIndex = 0;
             this.lDistance.Text = "Distance";
-            this.lDistance.Click += new System.EventHandler(this.lDistance_Click);
+            this.lDistance.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lDistance_MouseClick);
             // 
             // pbMinimapVector
             // 
+            this.pbMinimapVector.BackColor = System.Drawing.Color.Transparent;
             this.pbMinimapVector.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pbMinimapVector.Location = new System.Drawing.Point(0, 35);
             this.pbMinimapVector.Name = "pbMinimapVector";

@@ -126,8 +126,7 @@ namespace WarThunderMinimapRangefinder
         private void btnPasteFullscreenImage_Click(object sender, EventArgs e)
         {   
             if(pbMinimap.Image!=null)pbMinimap.Image.Dispose();
-            Bitmap minimap = BitmapWorker.getMinimap(BitmapWorker.getScreenshot());
-
+            Bitmap minimap = BitmapWorker.getMinimap(BitmapWorker.getScreenshot(), overlayForm);
             // Выводим вырезанное изображение в PictureBox
             pbMinimap.Image = minimap;
         }
@@ -172,7 +171,7 @@ namespace WarThunderMinimapRangefinder
 
         private void btnOpenOverlaySettings_Click(object sender, EventArgs e)
         {
-            if(overlaySettingsForm==null)
+            if(overlaySettingsForm==null || overlaySettingsForm.IsDisposed)
             {
                 overlaySettingsForm = new fOverlaySettings(ref overlayForm);
             }
