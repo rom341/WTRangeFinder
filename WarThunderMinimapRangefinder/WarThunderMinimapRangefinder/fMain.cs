@@ -17,7 +17,7 @@ namespace WarThunderMinimapRangefinder
     {
         System.Timers.Timer autoMarkDetectionTimer;
         fOverlay overlayForm;
-        fOverlayGuider labelGuider;
+        fOverlaySettings overlaySettingsForm;
         BitmapWorker bitmapWorker = new BitmapWorker();
         Point markPoint { get; set; }
         Point playerPoint { get; set; }
@@ -136,6 +136,9 @@ namespace WarThunderMinimapRangefinder
         {
             //Вывести оверлей
             btnOverlay.PerformClick();
+            //Настройки оверлея
+            overlaySettingsForm = new fOverlaySettings(ref overlayForm);
+            overlaySettingsForm.LoadOverlaySettingsFromFile();
         }
 
         private void chbAutoDetection_CheckedChanged(object sender, EventArgs e)
@@ -167,14 +170,14 @@ namespace WarThunderMinimapRangefinder
             btnGetRange.PerformClick();
         }
 
-        private void btnOpenOverlayGuider_Click(object sender, EventArgs e)
+        private void btnOpenOverlaySettings_Click(object sender, EventArgs e)
         {
-            if(labelGuider==null)
+            if(overlaySettingsForm==null)
             {
-                labelGuider = new fOverlayGuider(ref overlayForm);
+                overlaySettingsForm = new fOverlaySettings(ref overlayForm);
             }
-            if(labelGuider.Visible) labelGuider.Hide();
-            else labelGuider.Show();
+            if(overlaySettingsForm.Visible) overlaySettingsForm.Hide();
+            else overlaySettingsForm.Show();
         }
     }
 }
