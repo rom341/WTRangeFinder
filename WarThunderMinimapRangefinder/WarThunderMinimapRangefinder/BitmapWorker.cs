@@ -25,7 +25,7 @@ namespace WarThunderMinimapRangefinder
             }
             return returnImage;
         }
-        static public Bitmap getScreenshot()
+        static public Bitmap getScreenshot_1080p()
         {
             // Получаем размеры экрана
             int screenWidth = 1920;
@@ -36,6 +36,19 @@ namespace WarThunderMinimapRangefinder
             graphics.CopyFromScreen(0, 0, 0, 0, screenshot.Size);
             return screenshot;
         }
+        static public Bitmap getScreenshot()
+        {
+            // Получаем размеры экрана
+            int screenWidth = (int)(Screen.PrimaryScreen.Bounds.Width * 5.0 / 4.0);
+            int screenHeight = (int)(Screen.PrimaryScreen.Bounds.Height * 5.0 / 4.0);
+
+            Bitmap screenshot = new Bitmap(screenWidth, screenHeight);
+            Graphics graphics = Graphics.FromImage(screenshot);
+            graphics.CopyFromScreen(0, 0, 0, 0, screenshot.Size);
+
+            return screenshot;
+        }
+
         static public Bitmap getMinimap(Bitmap screenBitmap)
         {
             // Создаем прямоугольник для вырезания части изображения
@@ -50,10 +63,38 @@ namespace WarThunderMinimapRangefinder
             screenBitmap.Dispose();
             return croppedBitmap;
         }
+        static public Bitmap getMinimap(Bitmap screenBitmap, fOverlay overlay)
+        {
+            Bitmap minimapBitmap = new Bitmap((int)(overlay.pbMinimapVector.Width * 1.25), (int)(overlay.pbMinimapVector.Height * 1.25));
+
+            // Получаем экранные координаты PictureBox
+            Point screenPictureBoxLocation = new Point(
+                (int)(overlay.Location.X * 1.25) + overlay.pbMinimapVector.Location.X + 2,
+                (int)(overlay.Location.Y * 1.25) + overlay.pbMinimapVector.Location.Y + 9
+                );
+
+            // Создаем объект Graphics для нового Bitmap
+            using (Graphics g = Graphics.FromImage(minimapBitmap))
+            {
+                // Устанавливаем режим высокого качества рисования
+                g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                g.SmoothingMode = SmoothingMode.HighQuality;
+
+                // Вырезаем область из screenBitmap и рисуем ее на minimapBitmap
+                g.DrawImage(screenBitmap,
+                    new Rectangle(0, 0, minimapBitmap.Width, minimapBitmap.Height),
+                    screenPictureBoxLocation.X, screenPictureBoxLocation.Y,
+                    minimapBitmap.Width, minimapBitmap.Height,
+                    GraphicsUnit.Pixel);
+            }
+
+            return minimapBitmap;
+        }
+
         static public Bitmap DrawVector(Point player, Point mark, Image imageSource)
         {
             // Создаем копию текущего изображения в pictureBox
-            Bitmap screenBitmap = new Bitmap(320, 320);
+            Bitmap screenBitmap = new Bitmap(340, 340);
 
             using (Graphics g = Graphics.FromImage(screenBitmap))
             {
@@ -71,8 +112,8 @@ namespace WarThunderMinimapRangefinder
         }
         static public int FindBlackStripeLength(Bitmap image)
         {
-            // Задаем координаты и размеры прямоугольника
-            int rectangleWidth = 65;
+            // Задаем координаты и размеры прямоугольника для сканирования
+            int rectangleWidth = 120;
             int rectangleHeight = 30;
             int rectangleX = image.Width - rectangleWidth;
             int rectangleY = image.Height - rectangleHeight;
@@ -80,7 +121,7 @@ namespace WarThunderMinimapRangefinder
             // Переменная для подсчета длины черной полосы
             int longestBlackStripeLength = 0;
             int temp;
-            Color black = Color.FromArgb(0, 0, 0);
+            Color black = Color.FromArgb(10, 10, 10);
             // Проходим по каждому пикселю в прямоугольнике
             for (int y = rectangleY; y < image.Height; y++)
             {
@@ -90,7 +131,7 @@ namespace WarThunderMinimapRangefinder
                     Color pixelColor = image.GetPixel(x, y);
 
                     // Проверяем, является ли пиксель черным
-                    if (pixelColor == black)
+                    if (ColorMatch(pixelColor, black, 10))
                     {
                         temp++;
                     }
@@ -139,7 +180,7 @@ namespace WarThunderMinimapRangefinder
         }
 
         //диапазон допустимых цветов
-        private bool ColorMatch(Color color1, Color color2, int tolerance = 5)
+        static private bool ColorMatch(Color color1, Color color2, int tolerance = 5)
         {
             return Math.Abs(color1.R - color2.R) <= tolerance &&
                    Math.Abs(color1.G - color2.G) <= tolerance &&
