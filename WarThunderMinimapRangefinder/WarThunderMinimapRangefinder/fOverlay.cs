@@ -92,10 +92,11 @@ namespace WarThunderMinimapRangefinder
             {
                 rmbPoint = new Point((int)(e.X * 1.25), (int)(e.Y * 1.25));
             }
+
             if (PointWorker.IsPointValid(lmbPoint) && PointWorker.IsPointValid(rmbPoint))
             {
                 fmain.setPointsAndMinimap(lmbPoint, rmbPoint, new Bitmap(pbMinimapVector.Image));
-                fmain.FindRangeFromSavedPoints();
+                fmain.updateOverlayDistance();
                 lmbPoint = new Point(-1, -1);
                 rmbPoint = new Point(-1, -1);
             }
