@@ -20,7 +20,7 @@ namespace WarThunderMinimapRangefinder
         public fOverlay(fMain fmain)
         {
             InitializeComponent();
-            ChangeFormSize();
+            AdjustPositionsAndSizes();
             this.fmain = fmain;
 
             lmbPoint = new Point(-1, -1);
@@ -29,11 +29,13 @@ namespace WarThunderMinimapRangefinder
         public void ChangelDistanceText(string distance)
         {
             lDistance.Text = distance;
-            ChangeFormSize();
+            AdjustPositionsAndSizes();
         }
 
-        private void ChangeFormSize()
+        public void AdjustPositionsAndSizes()
         {
+            lDistance.Location = new Point(0, 0);
+            pbMinimapVector.Location = new Point(0, lDistance.Height + 5);
             this.Width = Math.Max(lDistance.Width, pbMinimapVector.Width);
             this.Height = lDistance.Height + pbMinimapVector.Height + 5;
         }
@@ -51,30 +53,50 @@ namespace WarThunderMinimapRangefinder
 
         private void lDistance_Click(object sender, EventArgs e)
         {
-            lDistance.Text = "Select 2 points. 5 Sec";
+            lDistance.Text = "Select 2 points. 7 Sec";
             if (pbMinimapVector.Image != null) pbMinimapVector.Dispose();
-            pbMinimapVector.Image = BitmapWorker.getMinimap(BitmapWorker.getScreenshot());
-            
-            System.Timers.Timer timer = new System.Timers.Timer(5000);//5 секунды
+            pbMinimapVector.Image = BitmapWorker.getMinimap(BitmapWorker.getScreenshot_1080p(), this);
+
+            System.Timers.Timer timer = new System.Timers.Timer(7000);//7 секунды
             timer.AutoReset = false;
-            timer.Elapsed += (S, E) => Invoke(new Action(() => { pbMinimapVector.Image = null;lDistance.Text = "Distance"; timer.Dispose(); }));
+            timer.Elapsed += (S, E) => Invoke(new Action(() => { pbMinimapVector.Image = null; lDistance.Text = "Distance"; timer.Dispose(); }));
             timer.Start();
+        }
+
+        private void lDistance_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                fmain.FindRangeFromScreenshot();
+            }
+            else if (e.Button == MouseButtons.Right)
+            {
+                lDistance.Text = "Select 2 points. 7 Sec";
+                if (pbMinimapVector.Image != null) pbMinimapVector.Dispose();
+                pbMinimapVector.Image = BitmapWorker.getMinimap(BitmapWorker.getScreenshot_1080p(), this);
+
+                System.Timers.Timer timer = new System.Timers.Timer(7000);//7 секунды
+                timer.AutoReset = false;
+                timer.Elapsed += (S, E) => Invoke(new Action(() => { pbMinimapVector.Image = null; lDistance.Text = "Distance"; timer.Dispose(); }));
+                timer.Start();
+            }
         }
 
         private void pbMinimapVector_MouseClick(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
-                lmbPoint = new Point(e.X, e.Y);
+                lmbPoint = new Point((int)(e.X * 1.25), (int)(e.Y * 1.25));
             }
             else if (e.Button == MouseButtons.Right)
             {
-                rmbPoint = new Point(e.X, e.Y);
+                rmbPoint = new Point((int)(e.X * 1.25), (int)(e.Y * 1.25));
             }
-            if(PointWorker.IsPointValid(lmbPoint) && PointWorker.IsPointValid(rmbPoint))
+
+            if (PointWorker.IsPointValid(lmbPoint) && PointWorker.IsPointValid(rmbPoint))
             {
                 fmain.setPointsAndMinimap(lmbPoint, rmbPoint, new Bitmap(pbMinimapVector.Image));
-                fmain.FindRangeFromSavedPoints();
+                fmain.updateOverlayDistance();
                 lmbPoint = new Point(-1, -1);
                 rmbPoint = new Point(-1, -1);
             }
